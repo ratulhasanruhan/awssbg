@@ -14,7 +14,8 @@ export type CommitteeMember = {
 export const committee: CommitteeMember[] = [
   {
     name: "Ratul Hasan Ruhan",
-    role: "Leader, AWS Student Builders Group",
+    role: "Leader",
+    title: "AWS Student Builders Group",
     group: "lead",
     photo: "/team/ratul-hasan-ruhan.webp",
     profile: "https://ratuler.vercel.app",

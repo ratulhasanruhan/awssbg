@@ -116,6 +116,7 @@ export default function HomePage() {
       </SectionWrapper>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(leaderPersonJsonLd) }} />
+      {leaderPersonJsonLd.sameAs.map((url) => <link key={url} rel="me" href={url} />)}
       {/* TEAM */}
       <SectionWrapper id="team" label="The people" number="03" more={{ href: "/team", label: "Team page" }} className="border-t border-line" title={<>Meet the <span className="gradient-text">builders</span>.</>} intro="The faculty and students who keep the group running.">
         <TeamGrid />
