@@ -35,7 +35,7 @@ export default function HomePage() {
         <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-sbg-blue/20 blur-[120px]" aria-hidden="true" />
         <div className="absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-sbg-purple/20 blur-[120px]" aria-hidden="true" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
-          <ScrollReveal>
+          <div className="hero-in">
             <p className="chip-label inline-flex items-center gap-2 border border-line bg-panel/70 px-3 py-1.5 text-dim">
               <span className="h-1.5 w-1.5 rounded-full bg-aws-orange pulse" aria-hidden="true" /> {site.institution}
             </p>
@@ -54,10 +54,10 @@ export default function HomePage() {
                 Browse events
               </Link>
             </div>
-          </ScrollReveal>
-          <ScrollReveal delay={0.15}>
+          </div>
+          <div className="hero-in hero-delay">
             <ArchitectureDiagram />
-          </ScrollReveal>
+          </div>
         </div>
       </section>
 
@@ -65,7 +65,7 @@ export default function HomePage() {
       <SectionWrapper id="about" label="About the group" number="01" className="border-t border-line" title={<>A community that <span className="gradient-text">ships</span>.</>} intro="No previous cloud experience required. Every activity is designed to turn an idea into something that runs.">
         <div className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map(({ title, icon: Icon, body, tag }, i) => (
-            <ScrollReveal key={title} delay={i * 0.07} className="h-full">
+            <ScrollReveal key={title} delay={i * 0.07} className="h-full bg-void">
               <div className="group h-full bg-void p-6 transition-colors hover:bg-panel sm:p-7">
                 <p className="font-mono text-[10px] text-faint">{tag}</p>
                 <Icon className="mt-6 text-sbg-blue transition-colors group-hover:text-aws-orange" size={26} aria-hidden="true" />
