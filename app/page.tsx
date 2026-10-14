@@ -24,18 +24,18 @@ const programs = [
 
 export default function HomePage() {
   return (
-    <main>
+    <main id="main">
       <section className="relative overflow-hidden bg-[#17213d] px-6 py-24 text-white sm:py-32">
         <div className="absolute -right-20 top-12 h-80 w-80 rounded-full border border-[#ff9900]/20" />
         <div className="absolute -right-4 top-28 h-56 w-56 rounded-full border border-[#ff9900]/20" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1fr_0.8fr]">
           <ScrollReveal>
             <div className="mb-8 flex items-center gap-4">
-              <Image src="/brand/awssbg-mark.svg" alt="AWS SBG" width={40} height={40} className="h-10 w-10" />
+              <Image src="/brand/awssbg-mark.svg" alt="" width={40} height={40} className="h-10 w-10" priority />
               <span className="h-8 w-px bg-white/20" />
               <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#ffca80]">Learn · Build · Connect · Create Impact</span>
             </div>
-            <h1 className="max-w-3xl text-5xl leading-[0.98] sm:text-7xl">Learn AWS by <span className="text-[#ff9900]">building.</span></h1>
+            <h1 className="max-w-3xl text-4xl leading-[0.98] sm:text-6xl lg:text-7xl">Learn AWS by <span className="text-[#ff9900]">building.</span></h1>
             <p className="mt-7 max-w-xl text-lg leading-8 text-[#cbd5ee]">The AWS Student Builders Group at Daffodil International Academy is a student-led cloud community, part of a global network of 600+ student-led groups connected to AWS Builder Center. Learn with peers through hands-on workshops, projects, and events.</p>
             <div className="mt-9 flex flex-wrap gap-4">
               <Link href="#contact" className="inline-flex items-center gap-2 bg-[#ff9900] px-5 py-3.5 text-sm font-bold text-[#17213d] hover:bg-[#ffb83d]">Join the group <ArrowUpRight size={17} /></Link>
@@ -62,7 +62,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectionWrapper label="The program" number="01" className="border-t border-[#e5e7eb]">
+      <SectionWrapper id="about" label="The program" number="01" className="border-t border-[#e5e7eb]">
         <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
           <ScrollReveal>
             <h2 className="text-4xl text-[#17213d] sm:text-5xl">A practical path into the cloud.</h2>
@@ -81,7 +81,7 @@ export default function HomePage() {
         </div>
       </SectionWrapper>
 
-      <SectionWrapper label="Learning roadmap" number="02" className="border-t border-[#e5e7eb] bg-[#f9fafb]">
+      <SectionWrapper id="activities" label="Learning roadmap" number="02" className="border-t border-[#e5e7eb] bg-[#f9fafb]">
         <ScrollReveal>
           <h2 className="text-4xl text-[#17213d] sm:text-5xl">Your route to the cloud.</h2>
           <p className="mt-4 max-w-xl text-[#667085]">Explore the official AWS Skill Builder resources alongside our community sessions.</p>
@@ -109,17 +109,17 @@ export default function HomePage() {
         </div>
       </SectionWrapper>
 
-      <SectionWrapper label="Committee" number="03" className="border-t border-[#e5e7eb]" >
+      <SectionWrapper id="committee" label="Core team" number="03" className="border-t border-[#e5e7eb]" >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {committee.map((member, index) => (
             <ScrollReveal key={member.name} delay={index * 0.06}>
               <div className="spotlight-card p-5">
                 <div className="mb-4 flex items-center gap-3">
-                  <div className="h-12 w-12 rounded-full bg-[#fff1dc] flex items-center justify-center text-[#ff9900] font-bold">
-                    {member.photo ? <Image src={member.photo} alt="" width={48} height={48} className="h-12 w-12 rounded-full object-cover" /> : <span>aws</span>}
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#fff1dc] font-bold text-[#ff9900] ring-2 ring-[#ff9900]/30">
+                    {member.photo ? <Image src={member.photo} alt={`Photo of ${member.name}`} width={64} height={64} sizes="64px" className="h-16 w-16 rounded-full object-cover" /> : <span>aws</span>}
                   </div>
                   <div>
-                    <p className="font-bold">{member.name}</p>
+                    <h3 className="text-base font-bold tracking-normal">{member.name}</h3>
                     <p className="text-xs text-[#667085]">{member.role}</p>
                   </div>
                 </div>
@@ -138,7 +138,7 @@ export default function HomePage() {
         </div>
       </SectionWrapper>
 
-      <SectionWrapper label="Get in touch" number="04" className="border-t border-[#e5e7eb] bg-[#fff7eb]" >
+      <SectionWrapper id="contact" label="Get in touch" number="04" className="border-t border-[#e5e7eb] bg-[#fff7eb]" >
         <div className="grid items-end gap-6 md:grid-cols-[1fr_auto]">
           <div>
             <h2 className="text-4xl text-[#17213d] sm:text-5xl">Ready to start?</h2>
@@ -147,7 +147,7 @@ export default function HomePage() {
               Have a question? Email us at <a href="mailto:aws@diapc.dev" className="font-mono text-[#ff9900] hover:underline">aws@diapc.dev</a>, or follow us on <a href="https://www.facebook.com/awssbgdia" target="_blank" rel="noopener noreferrer" className="text-[#ff9900] hover:underline">Facebook</a>.
             </p>
           </div>
-          <a id="contact" href="https://www.meetup.com/aws-sbg-at-daffodil-international-academy/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#ff9900] px-5 py-3.5 text-sm font-bold text-[#17213d] hover:bg-[#ffb83d]">
+          <a href="https://www.meetup.com/aws-sbg-at-daffodil-international-academy/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#ff9900] px-5 py-3.5 text-sm font-bold text-[#17213d] hover:bg-[#ffb83d]">
             Join us on Meetup <ArrowUpRight size={17} />
           </a>
         </div>

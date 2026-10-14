@@ -7,11 +7,12 @@ import { Menu, X } from "lucide-react";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
+    <nav aria-label="Primary" className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between border border-[#e5e7eb] bg-white/90 px-4 shadow-[0_12px_35px_rgba(0,0,0,0.06)] backdrop-blur-md sm:px-5">
         <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)} aria-label="AWS SBG at DIA">
-          <Image src="/brand/awssbg-mark.svg" alt="AWS SBG" width={32} height={32} className="h-8 w-8" priority />
-          <span className="font-bold tracking-tight">AWS Student Builders Group</span>
+          <Image src="/brand/awssbg-mark.svg" alt="" width={32} height={32} className="h-8 w-8" priority />
+          <span className="hidden h-6 w-px bg-[#e5e7eb] sm:block" aria-hidden="true" />
+          <Image src="/brand/awssbg-wordmark.png" alt="AWS Student Builders Group" width={573} height={128} className="h-7 w-auto sm:h-8" priority />
         </Link>
         <div className="hidden items-center gap-7 md:flex">
           <Link href="#about" className="text-sm font-medium text-[#667085] hover:text-[#111827]">About</Link>
