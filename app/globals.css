@@ -53,6 +53,7 @@ h1, h2, h3, h4 {
 }
 .blueprint-fade { mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 40%, transparent 100%); }
 
+@layer components {
 /* Panels that look like architecture-diagram components */
 .node-panel {
   position: relative;
@@ -68,6 +69,8 @@ h1, h2, h3, h4 {
 }
 .node-panel::before { top: -5px; left: -5px; }
 .node-panel::after { bottom: -5px; right: -5px; border-color: var(--color-sbg-purple); }
+
+}
 
 .gradient-text {
   background: linear-gradient(90deg, #5b9bff, #c25bd3 60%, #ff9900);
