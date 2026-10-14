@@ -69,16 +69,18 @@ const orgJsonLd = {
   ]
 };
 
+export const viewport = { themeColor: "#060914" };
+
 export default function RootLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} antialiased`}>
-        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-[#ff9900] focus:px-4 focus:py-2 focus:font-bold focus:text-[#17213d]">Skip to content</a>
+        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-aws-orange focus:px-4 focus:py-2 focus:font-bold focus:text-void">Skip to content</a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
         <Navbar />
-        <div className="relative z-10 pt-16">{children}</div>
+        <div className="relative z-10">{children}</div>
         <Footer />
       </body>
     </html>

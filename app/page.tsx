@@ -1,163 +1,135 @@
 import Link from "next/link";
-import Image from "next/image";
+import { Suspense } from "react";
+import { ArrowUpRight, BookOpen, Code2, Globe2, Mail, Network, Sparkles, Users } from "lucide-react";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import SectionWrapper from "@/components/motion/SectionWrapper";
-import { ArrowUpRight, CheckCircle, Cloud, Layers, ShieldCheck, Terminal, ExternalLink } from "lucide-react";
-import { committee } from "@/content/committee";
+import ArchitectureDiagram from "@/components/home/ArchitectureDiagram";
+import TeamGrid from "@/components/home/TeamGrid";
+import EventsFeed from "@/components/events/EventsFeed";
+import { site } from "@/content/site";
 
-export const metadata = { title: "Home" };
-
-const tracks = [
-  { name: "Cloud Foundations", desc: "Core services, regions, pricing, and shared responsibility.", icon: Cloud },
-  { name: "Compute & Networking", desc: "EC2, Lambda, VPC, and load balancing in practice.", icon: Layers },
-  { name: "Storage & Databases", desc: "S3, DynamoDB, RDS, and data management patterns.", icon: ShieldCheck },
-  { name: "DevOps & CI/CD", desc: "Automation, infrastructure as code, and deployment.", icon: Terminal }
+const pillars = [
+  { title: "Learn", icon: BookOpen, body: "Peer-led sessions that turn cloud concepts into working mental models, alongside AWS's own learning resources.", tag: "01 · foundations" },
+  { title: "Build", icon: Code2, body: "Hands-on workshops and builder sessions where you deploy real things, not just read about them.", tag: "02 · hands-on" },
+  { title: "Connect", icon: Users, body: "A campus community of builders, plus a door into AWS Builder Center and a global network of student groups.", tag: "03 · community" },
+  { title: "Create Impact", icon: Sparkles, body: "Projects and events that solve real problems for our school and community, and grow your portfolio.", tag: "04 · outcomes" }
 ];
 
-const programs = [
-  "Hands-on workshops with live AWS console demos",
-  "Build sessions: deploy real applications to the cloud",
-  "Certification study circles for Cloud Practitioner and SAA",
-  "Tech talks with the wider AWS community",
-  "Hackathons and cloud challenge events"
+const benefits = [
+  "Peer community of builders, developers and tech enthusiasts on campus",
+  "Access to AWS Builder Center, a global hub for learning and collaboration",
+  "Hands-on workshops and events designed to build real technical skills",
+  "Learning resources, and swag or credits when they're made available"
 ];
+
+function EventsFallback() {
+  return <div className="node-panel h-40 animate-pulse" aria-label="Loading events" />;
+}
 
 export default function HomePage() {
   return (
     <main id="main">
-      <section className="relative overflow-hidden bg-[#17213d] px-6 py-24 text-white sm:py-32">
-        <div className="absolute -right-20 top-12 h-80 w-80 rounded-full border border-[#ff9900]/20" />
-        <div className="absolute -right-4 top-28 h-56 w-56 rounded-full border border-[#ff9900]/20" />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1fr_0.8fr]">
+      {/* HERO */}
+      <section className="relative overflow-hidden px-4 pb-20 pt-32 sm:px-6 sm:pb-28 sm:pt-40">
+        <div className="blueprint blueprint-fade absolute inset-0" aria-hidden="true" />
+        <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-sbg-blue/20 blur-[120px]" aria-hidden="true" />
+        <div className="absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-sbg-purple/20 blur-[120px]" aria-hidden="true" />
+        <div className="relative mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
           <ScrollReveal>
-            <div className="mb-8 flex items-center gap-4">
-              <Image src="/brand/awssbg-mark.svg" alt="" width={40} height={40} className="h-10 w-10" priority />
-              <span className="h-8 w-px bg-white/20" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#ffca80]">Learn · Build · Connect · Create Impact</span>
-            </div>
-            <h1 className="max-w-3xl text-4xl leading-[0.98] sm:text-6xl lg:text-7xl">Learn AWS by <span className="text-[#ff9900]">building.</span></h1>
-            <p className="mt-7 max-w-xl text-lg leading-8 text-[#cbd5ee]">The AWS Student Builders Group at Daffodil International Academy is a student-led cloud community, part of a global network of 600+ student-led groups connected to AWS Builder Center. Learn with peers through hands-on workshops, projects, and events.</p>
-            <div className="mt-9 flex flex-wrap gap-4">
-              <Link href="#contact" className="inline-flex items-center gap-2 bg-[#ff9900] px-5 py-3.5 text-sm font-bold text-[#17213d] hover:bg-[#ffb83d]">Join the group <ArrowUpRight size={17} /></Link>
-              <a href="https://skillbuilder.aws" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-white/25 px-5 py-3.5 text-sm font-semibold text-white hover:border-[#ff9900]">Open Skill Builder <ExternalLink size={15} /></a>
+            <p className="chip-label inline-flex items-center gap-2 border border-line bg-panel/70 px-3 py-1.5 text-dim">
+              <span className="h-1.5 w-1.5 rounded-full bg-aws-orange pulse" aria-hidden="true" /> {site.institution}
+            </p>
+            <h1 className="mt-7 text-5xl text-white sm:text-6xl lg:text-7xl">
+              Architect your <span className="gradient-text">future</span> on the cloud.
+            </h1>
+            <p className="mt-6 font-mono text-sm text-aws-orange">{site.tagline}</p>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-dim">
+              The AWS Student Builders Group at {site.institution} is a student-led community for learning cloud and AI by building, part of a global network of 600+ student-led groups connected to AWS Builder Center.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a href={site.meetup} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-aws-orange px-5 py-3.5 text-sm font-bold text-void transition-transform hover:-translate-y-0.5">
+                Join on Meetup <ArrowUpRight size={17} aria-hidden="true" />
+              </a>
+              <Link href="/events" className="inline-flex items-center gap-2 border border-line bg-panel/60 px-5 py-3.5 text-sm font-semibold text-white transition-colors hover:border-sbg-blue">
+                Browse events
+              </Link>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.15}>
-            <div className="relative mx-auto max-w-sm">
-              <div className="absolute inset-0 rounded-[40%] bg-[#ff9900]/15 blur-3xl" />
-              <div className="relative border border-white/15 bg-white/[0.06] p-5 backdrop-blur">
-                <div className="flex items-center justify-between border-b border-white/10 pb-4 font-mono text-[10px] uppercase tracking-widest text-[#cbd5ee]"><span>cloud / dia</span><span className="text-[#ff9900]">online</span></div>
-                <div className="grid grid-cols-3 gap-3 py-10">
-                  {["Learn", "Build", "Ship"].map((label, index) => (
-                    <div key={label} className="flex aspect-square flex-col items-center justify-center gap-2 border border-[#ff9900]/30 bg-[#ff9900]/10 text-center">
-                      <span className="font-mono text-2xl text-[#ff9900]">0{index + 1}</span>
-                      <span className="text-xs font-semibold">{label}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="font-mono text-xs text-[#cbd5ee]">&gt; new cloud_builder();</p>
-              </div>
-            </div>
+            <ArchitectureDiagram />
           </ScrollReveal>
         </div>
       </section>
 
-      <SectionWrapper id="about" label="The program" number="01" className="border-t border-[#e5e7eb]">
-        <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
-          <ScrollReveal>
-            <h2 className="text-4xl text-[#17213d] sm:text-5xl">A practical path into the cloud.</h2>
-            <p className="mt-5 text-[#667085]">No previous cloud experience is required. Each activity is designed to turn a concept into a working mental model or a working build.</p>
-          </ScrollReveal>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {programs.map((program, index) => (
-              <ScrollReveal key={program} delay={index * 0.06}>
-                <div className="flex gap-3 border-b border-[#e5e7eb] py-4">
-                  <CheckCircle className="mt-0.5 shrink-0 text-[#ff9900]" size={18} />
-                  <span className="text-sm leading-6 text-[#667085]">{program}</span>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </SectionWrapper>
-
-      <SectionWrapper id="activities" label="Learning roadmap" number="02" className="border-t border-[#e5e7eb] bg-[#f9fafb]">
-        <ScrollReveal>
-          <h2 className="text-4xl text-[#17213d] sm:text-5xl">Your route to the cloud.</h2>
-          <p className="mt-4 max-w-xl text-[#667085]">Explore the official AWS Skill Builder resources alongside our community sessions.</p>
-        </ScrollReveal>
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
-          {tracks.map((track, index) => {
-            const Icon = track.icon;
-            return (
-              <ScrollReveal key={track.name} delay={index * 0.08}>
-                <a href="https://skillbuilder.aws" target="_blank" rel="noopener noreferrer" className="group flex gap-5 border border-[#e5e7eb] bg-white p-6 transition-all hover:-translate-y-1 hover:border-[#ff9900] hover:shadow-[8px_8px_0_#ffe0ae]">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#fff1dc] text-[#d97706]">
-                    <Icon size={21} />
-                  </span>
-                  <span>
-                    <span className="flex items-center justify-between gap-4 font-bold text-[#17213d]">
-                      {track.name}
-                      <ExternalLink size={15} className="text-[#98a2b3] group-hover:text-[#ff9900]" />
-                    </span>
-                    <span className="mt-2 block text-sm leading-6 text-[#667085]">{track.desc}</span>
-                  </span>
-                </a>
-              </ScrollReveal>
-            );
-          })}
-        </div>
-      </SectionWrapper>
-
-      <SectionWrapper id="committee" label="Core team" number="03" className="border-t border-[#e5e7eb]" >
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {committee.map((member, index) => (
-            <ScrollReveal key={member.name} delay={index * 0.06}>
-              <div className="spotlight-card p-5">
-                <div className="mb-4 flex items-center gap-3">
-                  <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#fff1dc] font-bold text-[#ff9900] ring-2 ring-[#ff9900]/30">
-                    {member.photo ? <Image src={member.photo} alt={`Photo of ${member.name}`} width={64} height={64} sizes="64px" className="h-16 w-16 rounded-full object-cover" /> : <span>aws</span>}
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold tracking-normal">{member.name}</h3>
-                    <p className="text-xs text-[#667085]">{member.role}</p>
-                  </div>
-                </div>
-                {member.links && member.links.length > 0 && (
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {member.links.map((l) => (
-                      <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer" className="text-xs text-[#17213d] border-b border-[#ff9900] hover:text-[#ff9900]">
-                        {l.label} ↗
-                      </a>
-                    ))}
-                  </div>
-                )}
+      {/* ABOUT */}
+      <SectionWrapper id="about" label="About the group" number="01" className="border-t border-line" title={<>A community that <span className="gradient-text">ships</span>.</>} intro="No previous cloud experience required. Every activity is designed to turn an idea into something that runs.">
+        <div className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          {pillars.map(({ title, icon: Icon, body, tag }, i) => (
+            <ScrollReveal key={title} delay={i * 0.07} className="h-full">
+              <div className="group h-full bg-void p-6 transition-colors hover:bg-panel sm:p-7">
+                <p className="font-mono text-[10px] text-faint">{tag}</p>
+                <Icon className="mt-6 text-sbg-blue transition-colors group-hover:text-aws-orange" size={26} aria-hidden="true" />
+                <h3 className="mt-5 text-2xl text-white">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-dim">{body}</p>
               </div>
             </ScrollReveal>
           ))}
         </div>
-      </SectionWrapper>
-
-      <SectionWrapper id="contact" label="Get in touch" number="04" className="border-t border-[#e5e7eb] bg-[#fff7eb]" >
-        <div className="grid items-end gap-6 md:grid-cols-[1fr_auto]">
-          <div>
-            <h2 className="text-4xl text-[#17213d] sm:text-5xl">Ready to start?</h2>
-            <p className="mt-4 max-w-xl text-[#7c8699]">Open to all currently enrolled DIA students. No prior cloud experience required.</p>
-            <p className="mt-4 text-sm text-[#7c8699]">
-              Have a question? Email us at <a href="mailto:aws@diapc.dev" className="font-mono text-[#ff9900] hover:underline">aws@diapc.dev</a>, or follow us on <a href="https://www.facebook.com/awssbgdia" target="_blank" rel="noopener noreferrer" className="text-[#ff9900] hover:underline">Facebook</a>.
-            </p>
-          </div>
-          <a href="https://www.meetup.com/aws-sbg-at-daffodil-international-academy/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#ff9900] px-5 py-3.5 text-sm font-bold text-[#17213d] hover:bg-[#ffb83d]">
-            Join us on Meetup <ArrowUpRight size={17} />
-          </a>
+        <div className="mt-12 grid gap-8 lg:grid-cols-2">
+          <ScrollReveal>
+            <div className="node-panel h-full p-7">
+              <Network className="text-sbg-purple" size={24} aria-hidden="true" />
+              <h3 className="mt-4 text-2xl text-white">Part of a global network</h3>
+              <p className="mt-3 leading-7 text-dim">We're one of 600+ student-led groups connected to AWS Builder Center, AWS's community platform for builders at every skill level.</p>
+              <a href={site.builderGroups} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-white hover:text-aws-orange">community.aws/buildergroups <ArrowUpRight size={15} aria-hidden="true" /></a>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <div className="node-panel h-full p-7">
+              <Globe2 className="text-aws-orange" size={24} aria-hidden="true" />
+              <h3 className="mt-4 text-2xl text-white">What members get</h3>
+              <ul className="mt-4 space-y-3">
+                {benefits.map((b) => (
+                  <li key={b} className="flex gap-3 text-sm leading-6 text-dim"><span className="mt-2 h-1.5 w-1.5 shrink-0 bg-aws-orange" aria-hidden="true" />{b}</li>
+                ))}
+              </ul>
+            </div>
+          </ScrollReveal>
         </div>
       </SectionWrapper>
 
-      <section className="border-t border-[#e5e7eb] px-6 py-12">
-        <p className="mx-auto max-w-6xl text-xs leading-6 text-[#667085]">
-          The AWS Student Builders Group at DIA is a student community. This page is not an official Amazon Web Services site. AWS and related marks belong to Amazon.com, Inc. or its affiliates. No AWS credits, vouchers, or specific program benefits are claimed unless explicitly verified.
+      {/* EVENTS */}
+      <SectionWrapper id="events" label="Events · live from Meetup" number="02" className="border-t border-line bg-panel/40" title="What's deploying next." intro="Workshops, builder sessions and meetups. Every event is managed on Meetup, so RSVP there to save your seat.">
+        <Suspense fallback={<EventsFallback />}>
+          <EventsFeed limitUpcoming={3} limitPast={3} />
+        </Suspense>
+      </SectionWrapper>
+
+      {/* TEAM */}
+      <SectionWrapper id="team" label="The people" number="03" className="border-t border-line" title={<>Meet the <span className="gradient-text">builders</span>.</>} intro="The faculty and students who keep the group running.">
+        <TeamGrid />
+      </SectionWrapper>
+
+      {/* CONTACT */}
+      <SectionWrapper id="contact" label="Get involved" number="04" className="border-t border-line">
+        <div className="relative overflow-hidden border border-line bg-panel p-8 sm:p-12">
+          <div className="blueprint absolute inset-0 opacity-60" aria-hidden="true" />
+          <div className="relative grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+            <div>
+              <h2 className="text-4xl text-white sm:text-5xl">Ready to start building?</h2>
+              <p className="mt-5 max-w-xl text-dim">Open to {site.institution} students. Join on Meetup to get event updates, follow us on Facebook, or send us an email.</p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <a href={site.meetup} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between bg-aws-orange px-5 py-4 text-sm font-bold text-void">Join on Meetup <ArrowUpRight size={17} aria-hidden="true" /></a>
+              <a href={site.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between border border-line bg-void px-5 py-4 text-sm font-semibold text-white hover:border-sbg-blue">Follow on Facebook <ArrowUpRight size={17} aria-hidden="true" /></a>
+              <a href={`mailto:${site.email}`} className="flex items-center justify-between border border-line bg-void px-5 py-4 text-sm font-semibold text-white hover:border-sbg-purple">{site.email} <Mail size={17} aria-hidden="true" /></a>
+            </div>
+          </div>
+        </div>
+        <p className="mt-8 text-sm text-faint">
+          How the group is run: read our <Link href="/constitution" className="text-dim underline decoration-line underline-offset-4 hover:text-white">draft constitution</Link>.
         </p>
-      </section>
+      </SectionWrapper>
     </main>
   );
 }

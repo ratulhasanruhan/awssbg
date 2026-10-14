@@ -1,41 +1,64 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+
+const links = [
+  { label: "About", href: "/#about" },
+  { label: "Events", href: "/events" },
+  { label: "Team", href: "/#team" },
+  { label: "Constitution", href: "/constitution" },
+  { label: "Contact", href: "/#contact" }
+];
+
+const MEETUP = "https://www.meetup.com/aws-sbg-at-daffodil-international-academy/";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  useEffect(() => setOpen(false), [pathname]);
+
   return (
-    <nav aria-label="Primary" className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between border border-[#e5e7eb] bg-white/90 px-4 shadow-[0_12px_35px_rgba(0,0,0,0.06)] backdrop-blur-md sm:px-5">
-        <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)} aria-label="AWS SBG at DIA">
-          <Image src="/brand/awssbg-mark.svg" alt="" width={32} height={32} className="h-8 w-8" priority />
-          <span className="hidden h-6 w-px bg-[#e5e7eb] sm:block" aria-hidden="true" />
-          <Image src="/brand/awssbg-wordmark.png" alt="AWS Student Builders Group" width={573} height={128} className="h-7 w-auto sm:h-8" priority />
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line/80 bg-void/80 backdrop-blur-xl">
+      <nav aria-label="Primary" className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+        <Link href="/" className="flex items-center gap-3" aria-label="AWS Student Builders Group, home">
+          <Image src="/brand/awssbg-mark.svg" alt="" width={34} height={34} className="h-8 w-8" priority />
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-[15px] font-bold tracking-tight text-white">AWS Student Builders Group</span>
+            <span className="mt-1 hidden font-mono text-[10px] uppercase tracking-[0.2em] text-faint sm:block">Daffodil International Academy</span>
+          </span>
         </Link>
-        <div className="hidden items-center gap-7 md:flex">
-          <Link href="#about" className="text-sm font-medium text-[#667085] hover:text-[#111827]">About</Link>
-          <Link href="#activities" className="text-sm font-medium text-[#667085] hover:text-[#111827]">Activities</Link>
-          <Link href="#committee" className="text-sm font-medium text-[#667085] hover:text-[#111827]">Committee</Link>
-          <Link href="#contact" className="text-sm font-medium text-[#667085] hover:text-[#111827]">Join</Link>
-          <a href="https://diapc.dev" className="text-sm font-semibold text-[#111827] border-b-2 border-[#ff9900]">
-            Back to DPC
+        <div className="hidden items-center gap-1 lg:flex">
+          {links.map((l) => {
+            const active = l.href === pathname;
+            return (
+              <Link key={l.href} href={l.href} aria-current={active ? "page" : undefined} className={`px-3 py-2 font-mono text-xs uppercase tracking-widest transition-colors hover:text-white ${active ? "text-white" : "text-dim"}`}>
+                {l.label}
+              </Link>
+            );
+          })}
+          <a href={MEETUP} target="_blank" rel="noopener noreferrer" className="ml-3 inline-flex items-center gap-1.5 bg-aws-orange px-4 py-2 text-sm font-bold text-void transition-transform hover:-translate-y-0.5">
+            Join on Meetup <ArrowUpRight size={15} aria-hidden="true" />
           </a>
         </div>
-        <button type="button" className="p-2 text-[#111827] md:hidden" onClick={() => setOpen(!open)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
-          {open ? <X size={21} /> : <Menu size={21} />}
+        <button type="button" className="p-2 text-white lg:hidden" onClick={() => setOpen(!open)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-menu">
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
-      </div>
+      </nav>
       {open && (
-        <div className="mx-auto mt-2 max-w-6xl border border-[#e5e7eb] bg-white p-3 shadow-lg md:hidden">
-          <Link href="#about" onClick={() => setOpen(false)} className="block px-3 py-3 text-sm font-medium text-[#667085] hover:bg-[#f3f4f6] hover:text-[#111827]">About</Link>
-          <Link href="#activities" onClick={() => setOpen(false)} className="block px-3 py-3 text-sm font-medium text-[#667085] hover:bg-[#f3f4f6] hover:text-[#111827]">Activities</Link>
-          <Link href="#committee" onClick={() => setOpen(false)} className="block px-3 py-3 text-sm font-medium text-[#667085] hover:bg-[#f3f4f6] hover:text-[#111827]">Committee</Link>
-          <Link href="#contact" onClick={() => setOpen(false)} className="block px-3 py-3 text-sm font-medium text-[#667085] hover:bg-[#f3f4f6] hover:text-[#111827]">Join</Link>
-          <a href="https://diapc.dev" className="mt-2 block px-3 py-3 text-sm font-semibold text-[#111827]">Back to DPC</a>
+        <div id="mobile-menu" className="border-t border-line bg-void px-4 pb-5 pt-2 lg:hidden">
+          {links.map((l) => (
+            <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="block border-b border-line/60 py-3.5 font-mono text-sm uppercase tracking-widest text-dim hover:text-white">
+              {l.label}
+            </Link>
+          ))}
+          <a href={MEETUP} target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center justify-center gap-2 bg-aws-orange py-3 text-sm font-bold text-void">
+            Join on Meetup <ArrowUpRight size={15} aria-hidden="true" />
+          </a>
         </div>
       )}
-    </nav>
+    </header>
   );
 }

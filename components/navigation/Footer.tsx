@@ -1,34 +1,46 @@
 import Link from "next/link";
 import Image from "next/image";
+import { site } from "@/content/site";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#e5e7eb] bg-white">
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-12 sm:flex-row sm:items-end sm:justify-between">
+    <footer className="relative border-t border-line bg-panel">
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <div className="flex items-center gap-2">
-            <Image src="/brand/awssbg-mark.svg" alt="" width={32} height={32} className="h-8 w-8" />
-            <span className="font-bold">AWS Student Builders Group · DIA</span>
-          </div>
-          <p className="mt-4 max-w-xs text-sm leading-6 text-[#667085]">
-            Learn · Build · Connect · Create Impact. A student-led AWS cloud community at Daffodil International Academy, under the DIA Programming Club.
+          <Image src="/brand/awssbg-wordmark-light.png" alt="AWS Student Builders Group" width={573} height={128} className="h-9 w-auto" />
+          <p className="mt-5 max-w-sm text-sm leading-6 text-dim">
+            A student-led AWS cloud community at {site.institution}. {site.tagline}.
           </p>
-          <code className="mt-4 block text-xs text-[#ff9900]">build above the ground();</code>
+          <p className="mt-4 font-mono text-xs text-faint">
+            <span className="text-aws-orange">$</span> deploy --region dia-dhaka --mode community<span className="caret" aria-hidden="true">_</span>
+          </p>
         </div>
-        <div className="space-y-2">
-          <a href="https://www.facebook.com/awssbgdia" target="_blank" rel="noopener noreferrer" className="block text-sm text-[#667085] hover:text-[#ff9900]">Facebook</a>
-          <a href="https://www.meetup.com/aws-sbg-at-daffodil-international-academy/" target="_blank" rel="noopener noreferrer" className="block text-sm text-[#667085] hover:text-[#ff9900]">Meetup</a>
-          <a href="mailto:aws@diapc.dev" className="block text-sm text-[#667085] hover:text-[#ff9900]">aws@diapc.dev</a>
-          <a href="https://skillbuilder.aws" target="_blank" rel="noopener noreferrer" className="block text-sm text-[#667085] hover:text-[#ff9900]">
-            Open AWS Skill Builder
-          </a>
-          <Link href="https://diapc.dev" className="block text-sm font-semibold text-[#111827] border-b-2 border-[#ff9900] w-fit">
-            Back to main site
-          </Link>
+        <div>
+          <p className="chip-label text-faint">Explore</p>
+          <ul className="mt-4 space-y-2.5 text-sm">
+            <li><Link href="/#about" className="text-dim hover:text-white">About</Link></li>
+            <li><Link href="/events" className="text-dim hover:text-white">Events</Link></li>
+            <li><Link href="/#team" className="text-dim hover:text-white">Core team</Link></li>
+            <li><Link href="/constitution" className="text-dim hover:text-white">Constitution</Link></li>
+          </ul>
+        </div>
+        <div>
+          <p className="chip-label text-faint">Connect</p>
+          <ul className="mt-4 space-y-2.5 text-sm">
+            <li><a href={site.meetup} target="_blank" rel="noopener noreferrer" className="text-dim hover:text-white">Meetup</a></li>
+            <li><a href={site.facebook} target="_blank" rel="noopener noreferrer" className="text-dim hover:text-white">Facebook</a></li>
+            <li><a href={`mailto:${site.email}`} className="text-dim hover:text-white">{site.email}</a></li>
+            <li><a href={site.builderGroups} target="_blank" rel="noopener noreferrer" className="text-dim hover:text-white">AWS Builder Groups</a></li>
+          </ul>
         </div>
       </div>
-      <div className="border-t border-[#e5e7eb] px-6 py-4 text-center text-xs text-[#98a2b3]">
-        Not an official AWS website. AWS and related marks belong to Amazon.com, Inc. or its affiliates.
+      <div className="border-t border-line">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-5 text-xs text-faint sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <p>
+            Part of <a href={site.parent.url} className="underline decoration-line underline-offset-4 hover:text-dim">{site.parent.name}</a>. Not an official Amazon Web Services website.
+          </p>
+          <p>AWS and related marks are trademarks of Amazon.com, Inc. or its affiliates.</p>
+        </div>
       </div>
     </footer>
   );
