@@ -32,18 +32,18 @@ export default function ArchitectureDiagram() {
           <circle cx="284" cy="300" r="4" stroke="#ff9900" className="pulse" />
         </g>
       </svg>
-      <div className="absolute left-1/2 top-1/2 flex h-36 w-36 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-2 border border-sbg-blue/60 bg-panel shadow-[0_0_60px_rgba(47,123,255,0.25)] sm:h-40 sm:w-40">
-        <Image src="/brand/awssbg-mark.svg" alt="" width={72} height={72} className="h-16 w-16 sm:h-[72px] sm:w-[72px]" priority />
-        <span className="chip-label text-[10px] text-dim">sbg-core</span>
+      <div className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-1.5 border border-sbg-blue/60 bg-panel shadow-[0_0_60px_rgba(47,123,255,0.25)] min-[420px]:h-32 min-[420px]:w-32 sm:h-40 sm:w-40 sm:gap-2">
+        <Image src="/brand/awssbg-mark.svg" alt="" width={72} height={72} className="h-11 w-11 min-[420px]:h-14 min-[420px]:w-14 sm:h-[72px] sm:w-[72px]" priority />
+        <span className="chip-label text-[9px] text-dim sm:text-[10px]">sbg-core</span>
       </div>
-      <div className="absolute inset-8">
+      <div className="absolute inset-6 sm:inset-8">
         {nodes.map(({ label, sub, icon: Icon, pos, color }) => (
-          <div key={label} className={`node-panel absolute ${pos} w-[42%] max-w-[170px] p-3 sm:p-4`}>
+          <div key={label} className={`node-panel absolute ${pos} w-[38%] max-w-[170px] p-2.5 sm:w-[42%] sm:p-4`}>
             <span className="flex h-8 w-8 items-center justify-center" style={{ backgroundColor: `${color}22`, color }}>
               <Icon size={17} aria-hidden="true" />
             </span>
-            <p className="mt-3 font-display text-sm font-bold text-white sm:text-base">{label}</p>
-            <p className="font-mono text-[10px] text-faint">{sub}</p>
+            <p className="mt-2 font-display text-[13px] font-bold leading-tight text-white sm:mt-3 sm:text-base">{label}</p>
+            <p className="hidden font-mono text-[10px] text-faint min-[420px]:block">{sub}</p>
           </div>
         ))}
       </div>

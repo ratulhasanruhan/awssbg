@@ -16,21 +16,22 @@ export default function Footer() {
           </p>
         </div>
         <div>
-          <p className="chip-label text-faint">Explore</p>
+          <h2 className="chip-label text-faint">Explore</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
             <li><Link href="/#about" className="text-dim hover:text-white">About</Link></li>
             <li><Link href="/events" className="text-dim hover:text-white">Events</Link></li>
-            <li><Link href="/#team" className="text-dim hover:text-white">Core team</Link></li>
+            <li><Link href="/team" className="text-dim hover:text-white">Team</Link></li>
             <li><Link href="/constitution" className="text-dim hover:text-white">Constitution</Link></li>
           </ul>
         </div>
         <div>
-          <p className="chip-label text-faint">Connect</p>
+          <h2 className="chip-label text-faint">Connect</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
+            <li><a href={site.builderCenterJoin} target="_blank" rel="noopener noreferrer" className="font-semibold text-aws-orange hover:text-white">Join AWS Builder Center</a></li>
             <li><a href={site.meetup} target="_blank" rel="noopener noreferrer" className="text-dim hover:text-white">Meetup</a></li>
             <li><a href={site.facebook} target="_blank" rel="noopener noreferrer" className="text-dim hover:text-white">Facebook</a></li>
             <li><a href={`mailto:${site.email}`} className="text-dim hover:text-white">{site.email}</a></li>
-            <li><a href={site.builderGroups} target="_blank" rel="noopener noreferrer" className="text-dim hover:text-white">AWS Builder Groups</a></li>
+            <li><a href={site.builderGroups} target="_blank" rel="noopener noreferrer" className="text-dim hover:text-white">About AWS Builder Groups</a></li>
           </ul>
         </div>
       </div>

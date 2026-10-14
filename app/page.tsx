@@ -7,6 +7,10 @@ import ArchitectureDiagram from "@/components/home/ArchitectureDiagram";
 import TeamGrid from "@/components/home/TeamGrid";
 import EventsFeed from "@/components/events/EventsFeed";
 import { site } from "@/content/site";
+import { pageMeta } from "@/lib/seo";
+
+export const metadata = pageMeta({ description: site.description, path: "/" });
+import { leaderPersonJsonLd } from "@/content/committee";
 
 const pillars = [
   { title: "Learn", icon: BookOpen, body: "Peer-led sessions that turn cloud concepts into working mental models, alongside AWS's own learning resources.", tag: "01 · foundations" },
@@ -50,7 +54,10 @@ export default function HomePage() {
               <a href={site.meetup} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-aws-orange px-5 py-3.5 text-sm font-bold text-void transition-transform hover:-translate-y-0.5">
                 Join on Meetup <ArrowUpRight size={17} aria-hidden="true" />
               </a>
-              <Link href="/events" className="inline-flex items-center gap-2 border border-line bg-panel/60 px-5 py-3.5 text-sm font-semibold text-white transition-colors hover:border-sbg-blue">
+              <a href={site.builderCenterJoin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-sbg-blue/70 bg-sbg-blue/10 px-5 py-3.5 text-sm font-bold text-white transition-colors hover:bg-sbg-blue/20">
+                Join AWS Builder Center <ArrowUpRight size={17} aria-hidden="true" />
+              </a>
+              <Link href="/events" className="inline-flex items-center gap-2 px-2 py-3.5 text-sm font-semibold text-dim underline decoration-line underline-offset-4 transition-colors hover:text-white">
                 Browse events
               </Link>
             </div>
@@ -81,7 +88,10 @@ export default function HomePage() {
               <Network className="text-sbg-purple" size={24} aria-hidden="true" />
               <h3 className="mt-4 text-2xl text-white">Part of a global network</h3>
               <p className="mt-3 leading-7 text-dim">We're one of 600+ student-led groups connected to AWS Builder Center, AWS's community platform for builders at every skill level.</p>
-              <a href={site.builderGroups} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-white hover:text-aws-orange">community.aws/buildergroups <ArrowUpRight size={15} aria-hidden="true" /></a>
+              <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+                <a href={site.builderCenterJoin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-bold text-white hover:text-aws-orange">Join the AWS community <ArrowUpRight size={15} aria-hidden="true" /></a>
+                <a href={site.builderGroups} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm text-dim hover:text-white">About Builder Groups <ArrowUpRight size={15} aria-hidden="true" /></a>
+              </div>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
@@ -105,8 +115,9 @@ export default function HomePage() {
         </Suspense>
       </SectionWrapper>
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(leaderPersonJsonLd) }} />
       {/* TEAM */}
-      <SectionWrapper id="team" label="The people" number="03" className="border-t border-line" title={<>Meet the <span className="gradient-text">builders</span>.</>} intro="The faculty and students who keep the group running.">
+      <SectionWrapper id="team" label="The people" number="03" more={{ href: "/team", label: "Team page" }} className="border-t border-line" title={<>Meet the <span className="gradient-text">builders</span>.</>} intro="The faculty and students who keep the group running.">
         <TeamGrid />
       </SectionWrapper>
 
@@ -117,10 +128,11 @@ export default function HomePage() {
           <div className="relative grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
             <div>
               <h2 className="text-4xl text-white sm:text-5xl">Ready to start building?</h2>
-              <p className="mt-5 max-w-xl text-dim">Open to {site.institution} students. Join on Meetup to get event updates, follow us on Facebook, or send us an email.</p>
+              <p className="mt-5 max-w-xl text-dim">Open to {site.institution} students. Join the AWS community on Builder Center, RSVP to events on Meetup, follow us on Facebook, or send us an email.</p>
             </div>
             <div className="flex flex-col gap-3">
-              <a href={site.meetup} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between bg-aws-orange px-5 py-4 text-sm font-bold text-void">Join on Meetup <ArrowUpRight size={17} aria-hidden="true" /></a>
+              <a href={site.builderCenterJoin} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between bg-aws-orange px-5 py-4 text-sm font-bold text-void">Join AWS Builder Center <ArrowUpRight size={17} aria-hidden="true" /></a>
+              <a href={site.meetup} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between border border-aws-orange/60 bg-void px-5 py-4 text-sm font-bold text-white hover:bg-aws-orange/10">Join on Meetup <ArrowUpRight size={17} aria-hidden="true" /></a>
               <a href={site.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between border border-line bg-void px-5 py-4 text-sm font-semibold text-white hover:border-sbg-blue">Follow on Facebook <ArrowUpRight size={17} aria-hidden="true" /></a>
               <a href={`mailto:${site.email}`} className="flex items-center justify-between border border-line bg-void px-5 py-4 text-sm font-semibold text-white hover:border-sbg-purple">{site.email} <Mail size={17} aria-hidden="true" /></a>
             </div>

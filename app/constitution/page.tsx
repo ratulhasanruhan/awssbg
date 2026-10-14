@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Constitution (Draft)",
-  description: "Draft constitution of the AWS Student Builders Group at Daffodil International Academy: purpose, membership, roles, activities, conduct, elections and amendments.",
-  alternates: { canonical: "/constitution" }
-};
+  description: "Draft constitution of the AWS Student Builders Group at Daffodil International Academy: purpose, membership, roles, activities, code of conduct, elections and amendments.",
+  path: "/constitution"
+});
 
 type Article = { id: string; title: string; clauses: (string | { lead: string; items: string[] })[] };
 
