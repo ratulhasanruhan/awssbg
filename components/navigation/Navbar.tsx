@@ -11,7 +11,7 @@ export default function Navbar() {
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between border border-[#e5e7eb] bg-white/90 px-4 shadow-[0_12px_35px_rgba(0,0,0,0.06)] backdrop-blur-md sm:px-5">
         <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)} aria-label="AWS SBG at DIA">
           <Image src="/brand/awssbg-mark.svg" alt="AWS SBG" width={32} height={32} className="h-8 w-8" priority />
-          <span className="font-bold tracking-tight">AWS Student Builder Group · DIA</span>
+          <span className="font-bold tracking-tight">AWS Student Builders Group</span>
         </Link>
         <div className="hidden items-center gap-7 md:flex">
           <Link href="#about" className="text-sm font-medium text-[#667085] hover:text-[#111827]">About</Link>

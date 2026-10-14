@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -6,18 +7,18 @@ export default function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-12 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded bg-[#fff1dc] text-[#ff9900]" aria-hidden="true">aws</span>
-            <span className="font-bold">AWS Student Builder Group · DIA</span>
+            <Image src="/brand/awssbg-mark.svg" alt="" width={32} height={32} className="h-8 w-8" />
+            <span className="font-bold">AWS Student Builders Group · DIA</span>
           </div>
           <p className="mt-4 max-w-xs text-sm leading-6 text-[#667085]">
-            A student-led cloud community under the DIA Programming Club.
+            Learn · Build · Connect · Create Impact. A student-led AWS cloud community at Daffodil International Academy, under the DIA Programming Club.
           </p>
           <code className="mt-4 block text-xs text-[#ff9900]">build above the ground();</code>
         </div>
         <div className="space-y-2">
-          <a href="https://www.facebook.com/diadpc" target="_blank" rel="noopener noreferrer" className="block text-sm text-[#667085] hover:text-[#ff9900]">
-            Follow DPC on Facebook
-          </a>
+          <a href="https://www.facebook.com/awssbgdia" target="_blank" rel="noopener noreferrer" className="block text-sm text-[#667085] hover:text-[#ff9900]">Facebook</a>
+          <a href="https://www.meetup.com/aws-sbg-at-daffodil-international-academy/" target="_blank" rel="noopener noreferrer" className="block text-sm text-[#667085] hover:text-[#ff9900]">Meetup</a>
+          <a href="mailto:aws@diapc.dev" className="block text-sm text-[#667085] hover:text-[#ff9900]">aws@diapc.dev</a>
           <a href="https://skillbuilder.aws" target="_blank" rel="noopener noreferrer" className="block text-sm text-[#667085] hover:text-[#ff9900]">
             Open AWS Skill Builder
           </a>

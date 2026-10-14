@@ -25,25 +25,25 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://aws.diapc.dev"),
   title: {
-    default: "AWS Student Builder Group · DIA",
+    default: "AWS Student Builders Group · Daffodil International Academy",
     template: "%s | AWS SBG · DIA"
   },
   description:
-    "Student-led AWS cloud community at Daffodil International Academy. Learn by building: foundations, hands-on workshops, and certification circles.",
+    "AWS Student Builders Group at Daffodil International Academy. Learn · Build · Connect · Create Impact. A student-led cloud community, part of the global AWS Builder Center network.",
   openGraph: {
-    title: "AWS Student Builder Group · DIA",
+    title: "AWS Student Builders Group · DIA",
     description:
-      "Learn AWS by building. Workshops, study circles, and projects at DIA.",
+      "Learn · Build · Connect · Create Impact. AWS Student Builders Group at Daffodil International Academy.",
     url: "https://aws.diapc.dev",
-    siteName: "AWS SBG · DIA",
+    siteName: "AWS Student Builders Group",
     type: "website",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "AWS SBG at DIA" }]
   },
   twitter: {
     card: "summary_large_image",
-    title: "AWS Student Builder Group · DIA",
+    title: "AWS Student Builders Group · DIA",
     description:
-      "Learn AWS by building. Workshops, study circles, and projects at DIA.",
+      "Learn · Build · Connect · Create Impact. AWS Student Builders Group at Daffodil International Academy.",
     images: ["/og.png"]
   },
   icons: {

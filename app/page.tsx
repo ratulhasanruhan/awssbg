@@ -33,12 +33,12 @@ export default function HomePage() {
             <div className="mb-8 flex items-center gap-4">
               <Image src="/brand/awssbg-mark.svg" alt="AWS SBG" width={40} height={40} className="h-10 w-10" />
               <span className="h-8 w-px bg-white/20" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#ffca80]">Student Builder Group · DIA</span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#ffca80]">Learn · Build · Connect · Create Impact</span>
             </div>
             <h1 className="max-w-3xl text-5xl leading-[0.98] sm:text-7xl">Learn AWS by <span className="text-[#ff9900]">building.</span></h1>
-            <p className="mt-7 max-w-xl text-lg leading-8 text-[#cbd5ee]">A student-led cloud community for learning AWS by building. Start with foundations, ship useful things, and grow with peers.</p>
+            <p className="mt-7 max-w-xl text-lg leading-8 text-[#cbd5ee]">The AWS Student Builders Group at Daffodil International Academy is a student-led cloud community, part of a global network of 600+ student-led groups connected to AWS Builder Center. Learn with peers through hands-on workshops, projects, and events.</p>
             <div className="mt-9 flex flex-wrap gap-4">
-              <Link href="#contact" className="inline-flex items-center gap-2 bg-[#ff9900] px-5 py-3.5 text-sm font-bold text-[#17213d] hover:bg-[#ffb83d]">Join this wing <ArrowUpRight size={17} /></Link>
+              <Link href="#contact" className="inline-flex items-center gap-2 bg-[#ff9900] px-5 py-3.5 text-sm font-bold text-[#17213d] hover:bg-[#ffb83d]">Join the group <ArrowUpRight size={17} /></Link>
               <a href="https://skillbuilder.aws" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-white/25 px-5 py-3.5 text-sm font-semibold text-white hover:border-[#ff9900]">Open Skill Builder <ExternalLink size={15} /></a>
             </div>
           </ScrollReveal>
@@ -144,18 +144,18 @@ export default function HomePage() {
             <h2 className="text-4xl text-[#17213d] sm:text-5xl">Ready to start?</h2>
             <p className="mt-4 max-w-xl text-[#7c8699]">Open to all currently enrolled DIA students. No prior cloud experience required.</p>
             <p className="mt-4 text-sm text-[#7c8699]">
-              Have a question? Email us at <span className="font-mono">aws-sbg@diapc.dev</span> (placeholder).
+              Have a question? Email us at <a href="mailto:aws@diapc.dev" className="font-mono text-[#ff9900] hover:underline">aws@diapc.dev</a>, or follow us on <a href="https://www.facebook.com/awssbgdia" target="_blank" rel="noopener noreferrer" className="text-[#ff9900] hover:underline">Facebook</a>.
             </p>
           </div>
-          <a id="contact" href="https://forms.gle/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#ff9900] px-5 py-3.5 text-sm font-bold text-[#17213d] hover:bg-[#ffb83d]">
-            Join the wing <ArrowUpRight size={17} />
+          <a id="contact" href="https://www.meetup.com/aws-sbg-at-daffodil-international-academy/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#ff9900] px-5 py-3.5 text-sm font-bold text-[#17213d] hover:bg-[#ffb83d]">
+            Join us on Meetup <ArrowUpRight size={17} />
           </a>
         </div>
       </SectionWrapper>
 
       <section className="border-t border-[#e5e7eb] px-6 py-12">
         <p className="mx-auto max-w-6xl text-xs leading-6 text-[#667085]">
-          The AWS Student Builder Group at DIA is a student community. This page is not an official Amazon Web Services site. AWS and related marks belong to Amazon.com, Inc. or its affiliates. No AWS credits, vouchers, or specific program benefits are claimed unless explicitly verified.
+          The AWS Student Builders Group at DIA is a student community. This page is not an official Amazon Web Services site. AWS and related marks belong to Amazon.com, Inc. or its affiliates. No AWS credits, vouchers, or specific program benefits are claimed unless explicitly verified.
         </p>
       </section>
     </main>
