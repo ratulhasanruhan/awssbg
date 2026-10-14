@@ -3,8 +3,8 @@ import { site } from "@/content/site";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "Constitution (Draft)",
-  description: "Draft constitution of the AWS Student Builders Group at Daffodil International Academy: purpose, membership, roles, activities, code of conduct, elections and amendments.",
+  title: "Constitution",
+  description: "Constitution of the AWS Student Builders Group at Daffodil International Academy: purpose, membership, roles, activities, code of conduct, elections and amendments.",
   path: "/constitution"
 });
 
@@ -173,9 +173,6 @@ export default function ConstitutionPage() {
         <p className="chip-label text-faint"><span className="text-aws-orange">DOC</span> · governance</p>
         <h1 className="mt-5 text-5xl text-white sm:text-6xl">Constitution</h1>
         <p className="mt-5 max-w-2xl text-lg text-dim">How the AWS Student Builders Group at {site.institution} is organized and run.</p>
-        <p role="note" className="mt-6 inline-flex items-center gap-2 border border-aws-orange/50 bg-aws-orange/10 px-3 py-2 font-mono text-xs uppercase tracking-widest text-aws-orange">
-          Draft · subject to committee approval
-        </p>
 
         <div className="mt-14 grid gap-12 lg:grid-cols-[220px_1fr]">
           <nav aria-label="Constitution contents" className="lg:sticky lg:top-24 lg:self-start">

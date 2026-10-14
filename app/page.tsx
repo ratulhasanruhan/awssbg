@@ -140,7 +140,7 @@ export default function HomePage() {
           </div>
         </div>
         <p className="mt-8 text-sm text-faint">
-          How the group is run: read our <Link href="/constitution" className="text-dim underline decoration-line underline-offset-4 hover:text-white">draft constitution</Link>.
+          How the group is run: read our <Link href="/constitution" className="text-dim underline decoration-line underline-offset-4 hover:text-white">constitution</Link>.
         </p>
       </SectionWrapper>
     </main>
