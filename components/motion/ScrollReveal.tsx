@@ -1,8 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { motion, useReducedMotion } from "framer-motion";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
+/**
+ * Fades content in when it scrolls into view. Content is fully visible without JS
+ * (the hidden state only applies once the `js` class is set on <html>).
+ */
 export default function ScrollReveal({
   children,
   delay = 0,
@@ -12,16 +14,31 @@ export default function ScrollReveal({
   delay?: number;
   className?: string;
 }) {
-  const reduced = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      el.classList.add("is-visible");
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            el.classList.add("is-visible");
+            io.disconnect();
+          }
+        }
+      },
+      { rootMargin: "0px 0px -60px 0px", threshold: 0.01 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   return (
-    <motion.div
-      initial={reduced ? false : { opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
+    <div ref={ref} className={`reveal ${className}`} style={delay ? { transitionDelay: `${delay}s` } : undefined}>
       {children}
-    </motion.div>
+    </div>
   );
 }

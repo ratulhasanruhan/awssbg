@@ -70,9 +70,9 @@ export default function HomePage() {
 
       {/* ABOUT */}
       <SectionWrapper id="about" label="About the group" number="01" className="border-t border-line" title={<>A community that <span className="gradient-text">ships</span>.</>} intro="No previous cloud experience required. Every activity is designed to turn an idea into something that runs.">
-        <div className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid border-l border-t border-line sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map(({ title, icon: Icon, body, tag }, i) => (
-            <ScrollReveal key={title} delay={i * 0.07} className="h-full bg-void">
+            <ScrollReveal key={title} delay={i * 0.07} className="h-full border-b border-r border-line">
               <div className="group h-full bg-void p-6 transition-colors hover:bg-panel sm:p-7">
                 <p className="font-mono text-[10px] text-faint">{tag}</p>
                 <Icon className="mt-6 text-sbg-blue transition-colors group-hover:text-aws-orange" size={26} aria-hidden="true" />
