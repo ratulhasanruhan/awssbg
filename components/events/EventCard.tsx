@@ -3,14 +3,16 @@ import { ArrowUpRight, CalendarDays, MapPin, Sparkles, Users } from "lucide-reac
 import { formatEventDate, type MeetupEvent } from "@/lib/meetup";
 import type { EventHighlight } from "@/content/event-highlights";
 
-function EventArtwork({ event, wide }: { event: MeetupEvent; wide?: boolean }) {
+function EventArtwork({ event, wide, artwork }: { event: MeetupEvent; wide?: boolean; artwork?: { src: string; alt: string } }) {
   const d = formatEventDate(event.start);
+  const src = artwork?.src ?? event.image;
+  const alt = artwork?.alt ?? "";
   return (
     <div className="relative aspect-[16/9] self-center overflow-hidden border-b border-line bg-void md:border-b-0 md:border-r">
-      {event.image ? (
+      {src ? (
         <Image
-          src={event.image}
-          alt=""
+          src={src}
+          alt={alt}
           fill
           sizes={wide ? "(min-width: 768px) 52vw, 100vw" : "(min-width: 768px) 320px, 100vw"}
           className="object-cover transition duration-500 group-hover:scale-[1.03]"
@@ -102,7 +104,7 @@ export default function EventCard({
   return (
     <article className={`node-panel group ${highlight ? "shadow-[inset_0_2px_0_0_#ff9900]" : ""}`}>
       <div className={`grid ${wide ? "md:grid-cols-[minmax(300px,1.05fr)_0.95fr]" : "md:grid-cols-[minmax(220px,320px)_1fr]"}`}>
-        <EventArtwork event={event} wide={wide} />
+        <EventArtwork event={event} wide={wide} artwork={highlight?.poster} />
         <div className="flex flex-col p-5 sm:p-6">
           <p className="chip-label">
             {highlight ? <span className="bg-aws-orange px-2 py-1 text-void">Highlighted recap</span> : <span className="text-faint">{past ? "Past event" : "Upcoming"}</span>}

@@ -15,6 +15,8 @@ export type EventHighlight = {
   eventId: string;
   /** Case-insensitive title fragment, so iCal fallbacks still attach the recap. */
   titleMatch: string;
+  /** Local card artwork. Used instead of the remote Meetup thumbnail for this event. */
+  poster?: EventPhoto;
   photos: EventPhoto[];
   benefits: EventBenefit[];
 };
@@ -23,18 +25,22 @@ export const eventHighlights: EventHighlight[] = [
   {
     eventId: "317219886",
     titleMatch: "buildmyfolio",
+    poster: {
+      src: "/events/buildmyfolio/poster.webp",
+      alt: "Official AWS BuildMyFolio poster: Build with AI. Deploy on AWS. Showcase Your Tech Superpower."
+    },
     photos: [
       {
         src: "/events/buildmyfolio/group.webp",
-        alt: "Participants and facilitators in the DIA computer lab after AWS BuildMyFolio, with the workshop slide on the screen behind them."
+        alt: "Participants and facilitators standing together in the DIA computer lab in front of the AWS BuildMyFolio slide."
       },
       {
         src: "/events/buildmyfolio/slide.webp",
-        alt: "A facilitator presenting the AWS BuildMyFolio slide during the workshop at Daffodil International Academy."
+        alt: "A facilitator in a light shirt presenting the AWS BuildMyFolio slide while students sit at lab computers."
       },
       {
         src: "/events/buildmyfolio/lab.webp",
-        alt: "Students working at their computers during AWS BuildMyFolio while a presenter demonstrates a portfolio on the projector."
+        alt: "A presenter in a purple AWS shirt demonstrating a live portfolio on the projector while students work at their computers."
       }
     ],
     benefits: [

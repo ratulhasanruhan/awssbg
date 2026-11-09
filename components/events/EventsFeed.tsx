@@ -13,7 +13,8 @@ function eventJsonLd(events: MeetupEvent[], past = false) {
     "@context": "https://schema.org",
     "@graph": events.map((e) => {
       const highlight = past ? highlightFor(e) : undefined;
-      const images = [...(e.image ? [e.image] : []), ...(highlight?.photos.map((p) => absoluteImage(p.src)) ?? [])];
+      const cover = highlight?.poster ? absoluteImage(highlight.poster.src) : e.image;
+      const images = [...(cover ? [cover] : []), ...(highlight?.photos.map((p) => absoluteImage(p.src)) ?? [])];
       return {
         "@type": "Event",
         name: e.title,
