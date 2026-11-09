@@ -109,7 +109,7 @@ export default function HomePage() {
       </SectionWrapper>
 
       {/* EVENTS */}
-      <SectionWrapper id="events" label="Events · live from Meetup" number="02" className="border-t border-line bg-panel/40" title="What's deploying next." intro="Workshops, builder sessions and meetups. Every event is managed on Meetup, so RSVP there to save your seat.">
+      <SectionWrapper id="events" label="Events · live from Meetup" number="02" className="border-t border-line bg-panel/40" title="What's deploying next." intro="Workshops, builder sessions and meetups. Upcoming sessions show their Meetup artwork. Past ones include photos and what attendees got.">
         <Suspense fallback={<EventsFallback />}>
           <EventsFeed limitUpcoming={3} limitPast={3} />
         </Suspense>
